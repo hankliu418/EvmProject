@@ -11,7 +11,7 @@ mkdir config
 create config file in config folder
 
 ```shell
-vim
+vim config.properties
 ```
 and content like this:
 
