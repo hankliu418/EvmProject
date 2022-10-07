@@ -35,7 +35,8 @@ public class Ethereum {
         BSC("https://bsc-dataseed1.binance.org", 56, "https://bscscan.com/tx/"),
         FTM("https://rpc.fantom.network", 250, "https://ftmscan.com/tx/"),
         ETHOP("https://mainnet.optimism.io", 10, "https://optimistic.etherscan.io/tx/"),
-        ETHAR("https://arb1.arbitrum.io/rpc", 42161, "https://arbiscan.io/tx/");
+        ETHAR("https://arb1.arbitrum.io/rpc", 42161, "https://arbiscan.io/tx/"),
+        ETHTEST("https://goerli.infura.io/v3/55c881399fe442bfb09d327b53dc5fdb",5,"");
 
         ChainList(String url, int chainId, String ethscanUrl) {
             this.url = url;
@@ -70,7 +71,8 @@ public class Ethereum {
 
     Ethereum(ChainList chain, String apiKey) {
         this.chain = chain;
-        this.url = chain.getUrl() + apiKey;
+        this.url = chain.getUrl();
+//        this.url = chain.getUrl() + apiKey;
     }
 
     public ChainList getChain() {

@@ -46,7 +46,9 @@ public class EIP1559Transaction implements Transaction {
 
         Pair<BigInteger, BigInteger> tipPair = eth.getFeeHistory();
         this.gasTipCap = tipPair.first;
+        System.out.println("gasTipCap: " + gasTipCap);
         BigInteger baseFee = tipPair.second;
+        System.out.println("baseFee: " + baseFee);
 
         eth.getMaxPriorityFeePerGas();
 

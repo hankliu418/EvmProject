@@ -12,8 +12,10 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Base64;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.bouncycastle.util.encoders.Hex;
 
 /**
  *
@@ -41,7 +43,7 @@ public class Http {
             con.setRequestProperty("Accept", "application/json");
             con.setDoOutput(true);
 
-            try (BufferedReader br = new BufferedReader(
+            try ( BufferedReader br = new BufferedReader(
                     new InputStreamReader(con.getInputStream(), "utf-8"))) {
                 StringBuilder response = new StringBuilder();
                 String responseLine = null;
@@ -69,6 +71,9 @@ public class Http {
             // 設置請求需要返回的數據類型與字符集
             conn.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
             conn.setRequestProperty("User-agent", "Mozilla/5.0 (Linux; Android 4.2.1; Nexus 7 Build/JOP40D) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.166  Safari/535.19");
+            // Add Authorization
+//            String encoding = Base64.getEncoder().encodeToString(":a2d3a23bdd9e4a52b7c866904a3a3f6c".getBytes());
+//            conn.setRequestProperty("Authorization", "Basic " + encoding);
             // 允許寫入
             conn.setDoOutput(true);
             // 允許讀出
@@ -82,7 +87,7 @@ public class Http {
             os.close();
 
             // 讀取結果
-            try (BufferedReader br = new BufferedReader(
+            try ( BufferedReader br = new BufferedReader(
                     new InputStreamReader(conn.getInputStream(), "utf-8"))) {
                 StringBuilder response = new StringBuilder();
                 String responseLine;
